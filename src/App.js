@@ -1,12 +1,15 @@
 import React from "react";
 import GameProvider from "./providers/GameProvider";
-import Map from "./components/Map"
+import Character from "./components/Character";
+import Map from "./components/Map";
+import "./App.css";
 
 function App() {
   return (
-  <GameProvider>
-    <Map />
-  </GameProvider>
+    <GameProvider>
+      <Map />
+      <Character />
+    </GameProvider>
   );
 }
 
