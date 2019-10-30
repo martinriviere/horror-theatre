@@ -7,50 +7,85 @@ class GameProvider extends Component {
     super(props);
 
     this.state = {
-      characterPosition: { top: 50, left: 50, rotate: 0 }
+      characterPosition: { top: 0, left: 0, rotate: 0 },
+      translate: { x: 0, y: 0 },
+      getComputedStyle: this.getComputedStyle
     };
     window.addEventListener("keydown", this.handleKeyDown);
   }
 
+  getComputedStyle = (top, left) => {
+    this.computedCharacterPosition = { top: top, left: left };
+  };
+
   handleKeyDown = event => {
-    const { characterPosition } = this.state;
-    const step = 2;
+    event.preventDefault();
+    const { characterPosition, translate } = this.state;
+    const step = 10;
     switch (event.keyCode) {
       case 37:
-        this.setState({
-          characterPosition: {
-            ...characterPosition,
-            left: characterPosition.left - step,
-            rotate: -90
-          }
-        });
+        if (this.computedCharacterPosition.left > window.innerWidth * 0.15) {
+          this.setState({
+            characterPosition: {
+              ...characterPosition,
+              left: characterPosition.left - step,
+              rotate: -90
+            }
+          });
+        } else {
+          this.setState({
+            characterPosition: { ...characterPosition, rotate: -90 },
+            translate: { ...translate, x: translate.x + step }
+          });
+        }
         break;
       case 38:
-        this.setState({
-          characterPosition: {
-            ...characterPosition,
-            top: characterPosition.top - step,
-            rotate: 0
-          }
-        });
+        if (this.computedCharacterPosition.top > window.innerHeight * 0.2) {
+          this.setState({
+            characterPosition: {
+              ...characterPosition,
+              top: characterPosition.top - step,
+              rotate: 0
+            }
+          });
+        } else {
+          this.setState({
+            characterPosition: { ...characterPosition, rotate: 0 },
+            translate: { ...translate, y: translate.y + step }
+          });
+        }
         break;
       case 39:
-        this.setState({
-          characterPosition: {
-            ...characterPosition,
-            left: characterPosition.left + step,
-            rotate: 90
-          }
-        });
+        if (this.computedCharacterPosition.left < window.innerWidth * 0.85) {
+          this.setState({
+            characterPosition: {
+              ...characterPosition,
+              left: characterPosition.left + step,
+              rotate: 90
+            }
+          });
+        } else {
+          this.setState({
+            characterPosition: { ...characterPosition, rotate: 90 },
+            translate: { ...translate, x: translate.x - step }
+          });
+        }
         break;
       case 40:
-        this.setState({
-          characterPosition: {
-            ...characterPosition,
-            top: characterPosition.top + step,
-            rotate: 180
-          }
-        });
+        if (this.computedCharacterPosition.top < window.innerHeight * 0.8) {
+          this.setState({
+            characterPosition: {
+              ...characterPosition,
+              top: characterPosition.top + step,
+              rotate: 180
+            }
+          });
+        } else {
+          this.setState({
+            characterPosition: { ...characterPosition, rotate: 180 },
+            translate: { ...translate, y: translate.y - step }
+          });
+        }
         break;
       default:
     }
