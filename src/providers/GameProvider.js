@@ -11,8 +11,8 @@ class GameProvider extends Component {
       translate: { x: 0, y: 0 },
       getComputedStyle: this.getComputedStyle,
       virtualPosition: {
-        top: window.innerHeight / 2 - 10.5,
-        left: window.innerWidth / 2 - 15
+        top: window.innerHeight / 2 - 21.1,
+        left: window.innerWidth / 2 - 30
       }
     };
     window.addEventListener("keydown", this.handleKeyDown);
@@ -25,28 +25,27 @@ class GameProvider extends Component {
   handleKeyDown = event => {
     // event.preventDefault();
     const { characterPosition, translate, virtualPosition } = this.state;
-    // console.log(
-    //   virtualPosition.top,
-    //   this.computedCharacterPosition.top,
-    //   virtualPosition.left,
-    //   this.computedCharacterPosition.left
-    // );
-    // console.log(virtualPosition);
+    console.log(virtualPosition.top);
     const step = 10;
     switch (event.keyCode) {
       case 37:
-        if (this.computedCharacterPosition.left > window.innerWidth * 0.15) {
-          this.setState({
-            characterPosition: {
-              ...characterPosition,
-              left: characterPosition.left - step,
-              rotate: -90
-            },
-            virtualPosition: {
-              ...virtualPosition,
-              left: virtualPosition.left - step
-            }
-          });
+        if (
+          this.computedCharacterPosition.left > window.innerWidth * 0.15 ||
+          virtualPosition.left < window.innerWidth * 0.15
+        ) {
+          if (virtualPosition.left > 0) {
+            this.setState({
+              characterPosition: {
+                ...characterPosition,
+                left: characterPosition.left - step,
+                rotate: -90
+              },
+              virtualPosition: {
+                ...virtualPosition,
+                left: virtualPosition.left - step
+              }
+            });
+          }
         } else {
           this.setState({
             characterPosition: { ...characterPosition, rotate: -90 },
@@ -59,18 +58,23 @@ class GameProvider extends Component {
         }
         break;
       case 38:
-        if (this.computedCharacterPosition.top > window.innerHeight * 0.2) {
-          this.setState({
-            characterPosition: {
-              ...characterPosition,
-              top: characterPosition.top - step,
-              rotate: 0
-            },
-            virtualPosition: {
-              ...virtualPosition,
-              top: virtualPosition.top - step
-            }
-          });
+        if (
+          this.computedCharacterPosition.top > window.innerHeight * 0.2 ||
+          virtualPosition.top < window.innerHeight * 0.2
+        ) {
+          if (virtualPosition.top > 0) {
+            this.setState({
+              characterPosition: {
+                ...characterPosition,
+                top: characterPosition.top - step,
+                rotate: 0
+              },
+              virtualPosition: {
+                ...virtualPosition,
+                top: virtualPosition.top - step
+              }
+            });
+          }
         } else {
           this.setState({
             characterPosition: { ...characterPosition, rotate: 0 },
@@ -83,18 +87,23 @@ class GameProvider extends Component {
         }
         break;
       case 39:
-        if (this.computedCharacterPosition.left < window.innerWidth * 0.85) {
-          this.setState({
-            characterPosition: {
-              ...characterPosition,
-              left: characterPosition.left + step,
-              rotate: 90
-            },
-            virtualPosition: {
-              ...virtualPosition,
-              left: virtualPosition.left + step
-            }
-          });
+        if (
+          this.computedCharacterPosition.left < window.innerWidth * 0.85 ||
+          virtualPosition.left > 2100 - window.innerWidth * 0.15 - 30
+        ) {
+          if (virtualPosition.left < 2100 - 30) {
+            this.setState({
+              characterPosition: {
+                ...characterPosition,
+                left: characterPosition.left + step,
+                rotate: 90
+              },
+              virtualPosition: {
+                ...virtualPosition,
+                left: virtualPosition.left + step
+              }
+            });
+          }
         } else {
           this.setState({
             characterPosition: { ...characterPosition, rotate: 90 },
@@ -107,18 +116,23 @@ class GameProvider extends Component {
         }
         break;
       case 40:
-        if (this.computedCharacterPosition.top < window.innerHeight * 0.8) {
-          this.setState({
-            characterPosition: {
-              ...characterPosition,
-              top: characterPosition.top + step,
-              rotate: 180
-            },
-            virtualPosition: {
-              ...virtualPosition,
-              top: virtualPosition.top + step
-            }
-          });
+        if (
+          this.computedCharacterPosition.top < window.innerHeight * 0.8 ||
+          virtualPosition.top > 2100 - window.innerHeight * 0.2 - 21.1
+        ) {
+          if (virtualPosition.top < 2100 - 21.1) {
+            this.setState({
+              characterPosition: {
+                ...characterPosition,
+                top: characterPosition.top + step,
+                rotate: 180
+              },
+              virtualPosition: {
+                ...virtualPosition,
+                top: virtualPosition.top + step
+              }
+            });
+          }
         } else {
           this.setState({
             characterPosition: { ...characterPosition, rotate: 180 },
