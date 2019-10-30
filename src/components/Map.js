@@ -72,7 +72,7 @@ function Map() {
   return (
     <div style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
       {CreateArrays().map((item, i) => {
-        return <div className="test" style={item}></div>;
+        return <div className="test" style={item} key={i}></div>;
       })}
     </div>
   );

@@ -9,7 +9,11 @@ class GameProvider extends Component {
     this.state = {
       characterPosition: { top: 0, left: 0, rotate: 0 },
       translate: { x: 0, y: 0 },
-      getComputedStyle: this.getComputedStyle
+      getComputedStyle: this.getComputedStyle,
+      virtualPosition: {
+        top: window.innerHeight / 2 - 10.5,
+        left: window.innerWidth / 2 - 15
+      }
     };
     window.addEventListener("keydown", this.handleKeyDown);
   }
@@ -20,7 +24,14 @@ class GameProvider extends Component {
 
   handleKeyDown = event => {
     // event.preventDefault();
-    const { characterPosition, translate } = this.state;
+    const { characterPosition, translate, virtualPosition } = this.state;
+    // console.log(
+    //   virtualPosition.top,
+    //   this.computedCharacterPosition.top,
+    //   virtualPosition.left,
+    //   this.computedCharacterPosition.left
+    // );
+    // console.log(virtualPosition);
     const step = 10;
     switch (event.keyCode) {
       case 37:
@@ -30,12 +41,20 @@ class GameProvider extends Component {
               ...characterPosition,
               left: characterPosition.left - step,
               rotate: -90
+            },
+            virtualPosition: {
+              ...virtualPosition,
+              left: virtualPosition.left - step
             }
           });
         } else {
           this.setState({
             characterPosition: { ...characterPosition, rotate: -90 },
-            translate: { ...translate, x: translate.x + step }
+            translate: { ...translate, x: translate.x + step },
+            virtualPosition: {
+              ...virtualPosition,
+              left: virtualPosition.left - step
+            }
           });
         }
         break;
@@ -46,12 +65,20 @@ class GameProvider extends Component {
               ...characterPosition,
               top: characterPosition.top - step,
               rotate: 0
+            },
+            virtualPosition: {
+              ...virtualPosition,
+              top: virtualPosition.top - step
             }
           });
         } else {
           this.setState({
             characterPosition: { ...characterPosition, rotate: 0 },
-            translate: { ...translate, y: translate.y + step }
+            translate: { ...translate, y: translate.y + step },
+            virtualPosition: {
+              ...virtualPosition,
+              top: virtualPosition.top - step
+            }
           });
         }
         break;
@@ -62,12 +89,20 @@ class GameProvider extends Component {
               ...characterPosition,
               left: characterPosition.left + step,
               rotate: 90
+            },
+            virtualPosition: {
+              ...virtualPosition,
+              left: virtualPosition.left + step
             }
           });
         } else {
           this.setState({
             characterPosition: { ...characterPosition, rotate: 90 },
-            translate: { ...translate, x: translate.x - step }
+            translate: { ...translate, x: translate.x - step },
+            virtualPosition: {
+              ...virtualPosition,
+              left: virtualPosition.left + step
+            }
           });
         }
         break;
@@ -78,12 +113,20 @@ class GameProvider extends Component {
               ...characterPosition,
               top: characterPosition.top + step,
               rotate: 180
+            },
+            virtualPosition: {
+              ...virtualPosition,
+              top: virtualPosition.top + step
             }
           });
         } else {
           this.setState({
             characterPosition: { ...characterPosition, rotate: 180 },
-            translate: { ...translate, y: translate.y - step }
+            translate: { ...translate, y: translate.y - step },
+            virtualPosition: {
+              ...virtualPosition,
+              top: virtualPosition.top + step
+            }
           });
         }
         break;
