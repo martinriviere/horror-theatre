@@ -8,8 +8,16 @@ const PlayerCol = (props) =>{
     return (
         <div className="player">
                     <img className="playerImg" src={playerImage} alt="player_Image"/>
-                    <p>Puissance: {props.att}</p>
-                    <p>PV: {props.def}</p>
+                    <table>
+                        <tr>
+                            <td>Puissance:</td>
+                            <td className="score">{props.att}</td>
+                        </tr>
+                        <tr>
+                            <td>PV:</td>
+                            <td className="score">{props.def}</td>
+                        </tr>
+                    </table>
                     <div className={props.turn ? 'buttonList' : 'buttonNone'}>
                         <button className="att"  onClick={props.getAtt}>Attaque!</button>
                         <button className="pow"  onClick={props.getPow}>Augmente ta puissance!</button>
