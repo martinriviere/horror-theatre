@@ -19,7 +19,7 @@ class GameProvider extends Component {
   };
 
   handleKeyDown = event => {
-    event.preventDefault();
+    // event.preventDefault();
     const { characterPosition, translate } = this.state;
     const step = 10;
     switch (event.keyCode) {

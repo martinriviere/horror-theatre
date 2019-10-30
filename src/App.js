@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import GameProvider, { GameContext } from "./providers/GameProvider";
 import Character from "./components/Character";
+import Map from "./components/Map";
 import "./App.css";
 
 function Background() {
@@ -16,7 +17,7 @@ function Background() {
 function App() {
   return (
     <GameProvider>
-      <Background />
+      <Map />
       <Character />
     </GameProvider>
   );
