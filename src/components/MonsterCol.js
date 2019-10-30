@@ -1,12 +1,13 @@
 import React from 'react'
 import './FightScreen.css'
 
-const MonsterCol = () =>{
+const MonsterCol = (props) =>{
     return (
         <div className="monster">
-                    <p>Puissance: 12</p>
-                    <p>Santé: 12</p>
-                    <img className="monsterImg" src="#" alt="#"/>
+            <h4>{props.name}</h4>
+            <p>Puissance: {props.att}</p>
+            <p>PV: {props.def}</p>
+            <img className="monsterImg" src={props.img} alt="#"/>
         </div>
     )
 }
