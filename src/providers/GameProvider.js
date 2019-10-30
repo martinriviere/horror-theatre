@@ -22,10 +22,18 @@ class GameProvider extends Component {
     this.computedCharacterPosition = { top: top, left: left };
   };
 
+  doesCharacterCollide = (x1, x2, y1, y2) => {
+    const { virtualPosition } = this.state;
+    const top = virtualPosition.top;
+    const left = virtualPosition.left;
+    if (left + 30 >= x1 && left <= x2 && (top + 21.1 >= y1 && top <= y2))
+      return true;
+    else return false;
+  };
+
   handleKeyDown = event => {
     // event.preventDefault();
     const { characterPosition, translate, virtualPosition } = this.state;
-    console.log(virtualPosition.top);
     const step = 10;
     switch (event.keyCode) {
       case 37:

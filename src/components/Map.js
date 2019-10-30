@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { GameContext } from "../providers/GameProvider";
+import Room from "./Room";
 import "./map.css";
 
 function CreateArrays() {
@@ -71,9 +72,9 @@ function Map() {
   const { translate } = useContext(GameContext);
   return (
     <div style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
-      {CreateArrays().map((item, i) => {
-        return <div className="test" style={item} key={i}></div>;
-      })}
+      {CreateArrays().map((item, i) => (
+        <Room style={item} key={i} />
+      ))}
     </div>
   );
 }
