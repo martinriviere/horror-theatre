@@ -1,0 +1,27 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.player{
+    width: 30%;
+    height: 90%;
+    background-color: rgb(83, 83, 83);
+}
+
+.fightZone{
+    width: 35%;
+    height: 90%;
+    background-color: rgb(83, 83, 83);
+    border-radius: 32px;
+}
+
+.monster{
+    width: 30%;
+    height: 90%;
+    background-color: rgb(83, 83, 83);
+}
