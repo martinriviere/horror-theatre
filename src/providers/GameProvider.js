@@ -26,7 +26,8 @@ class GameProvider extends Component {
       rooms: null,
       displayTheatre: false,
       movie: null,
-      closeTheatre: this.closeTheatre
+      closeTheatre: this.closeTheatre,
+      displayFight: false
     };
     window.addEventListener("keydown", this.handleKeyDown);
     this.numberOfRooms = null;
@@ -88,6 +89,8 @@ class GameProvider extends Component {
     )
       if (checkRoom.type === "Cinéma")
         this.setState({ displayTheatre: true, movie: checkRoom.movie });
+      else if (checkRoom.type === "Combat")
+        this.setState({ displayFight: true });
     return checkRoom;
   };
 
