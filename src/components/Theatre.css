@@ -1,0 +1,62 @@
+#bgd {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../images/abandoned_theater.jpg);
+  animation: zoomBgd 3s ease-in 1s;
+  background-position: center;
+  background-size: 100% 100%;
+  background-position: center;
+  animation-fill-mode: forwards;
+}
+
+#screen {
+  position: absolute;
+  top: 50%;
+  left: 27.6%;
+  width: 45.25%;
+  height: 25%;
+  background: grey;
+  animation: zoomScreen 3s ease-in 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoomBgd {
+  from {
+    background-size: 100% 100%;
+    background-position: center;
+  }
+  to {
+    background-size: 200% 200%;
+    background-position: 50% 75%;
+  }
+}
+
+@keyframes zoomScreen {
+  0% {
+    transform: scale(1);
+    top: 50%;
+  }
+  20% {
+    top: 50.75%;
+  }
+  33% {
+    top: 51.5%;
+  }
+  50% {
+    top: 52%;
+  }
+  66% {
+    top: 50.5%;
+  }
+  75% {
+    top: 48.5%;
+  }
+  80% {
+    top: 47%;
+  }
+  100% {
+    transform: scale(2);
+    top: 38%;
+  }
+}
