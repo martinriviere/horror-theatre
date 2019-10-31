@@ -7,7 +7,7 @@ function CreateArrays () {
   const y = 9; // Nb d'éléments en largeur
   const roomSize = 300 // hauteur / largeur d'une salle
   const corridorSize = 100 // hauteur / largeur d'un couloir
-  
+
   const modulo = 6 * roomSize + 3 * corridorSize; // NE PAS MODIIFIER
   let posX = 0;
   let posY = 0;
@@ -20,7 +20,9 @@ function CreateArrays () {
       roomStyleX = { top: `${posX}px`, height: `${roomSize}px` };
       posX += roomSize;
     } else {
-      roomStyleX = { top: `${posX}px`, height: `${corridorSize}px`, backgroundColor: `#eee` };
+      roomStyleX = "";
+    //que les salle : ligne à commenter
+      // roomStyleX = { top: `${posX}px`, height: `${corridorSize}px`, backgroundColor: `#eee` };
       posX += corridorSize;
     };
     for (let c = 0; c < y; c++) { // column
@@ -28,10 +30,13 @@ function CreateArrays () {
         roomStyleY = {  left: `${posY%modulo}px`, width: `${roomSize}px` };
         posY += roomSize;
       } else {
-        roomStyleY = { left: `${posY%modulo}px`, width: `${corridorSize}px`, backgroundColor: `#eee` };
+    //que les salle : ligne à commenter
+    roomStyleY = "";
+    // roomStyleY = { left: `${posY%modulo}px`, width: `${corridorSize}px`, backgroundColor: `#eee` };
         posY += corridorSize;
       };
-      arrays.push({ ...roomStyleX, ...roomStyleY});
+      // arrays.push({ ...roomStyleX, ...roomStyleY});
+      if (roomStyleX !== "" && roomStyleY !== "") arrays.push({ ...roomStyleX, ...roomStyleY});
     }
 }
 posX = 0;
@@ -44,8 +49,10 @@ function TestRoom (x) {
   switch (x) {
     case 1 :
       isRoom = false;
+      break;
     case 4 :
       isRoom = false;
+      break;
     case 7 :
       isRoom = false;
       break;
@@ -57,11 +64,10 @@ function TestRoom (x) {
 
 
 function Map () {
-
   return (
   CreateArrays().map((item,i) => {
     return (
-      <div className="test" style={item}>
+      <div id={`id${i}`} className={`id-${i}`} style={item}>
       </div>
     )
   })
