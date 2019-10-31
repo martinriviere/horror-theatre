@@ -62,7 +62,7 @@
 }
 
 .endGame{
-    animation: fadein 4s;
+    animation: fadein 2s;
     position: fixed;
     top: 0;
     left: 0;

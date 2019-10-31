@@ -14,9 +14,9 @@ class FightScreen extends Component{
             endGame:false,
             startGame:true,
             winner:'',
-            playerAtt:8,
+            playerAtt:10,
             playerAttMin:0,
-            playerDef:20,
+            playerDef:25,
             action:"",
             valeur:"",
             consequence:"",
@@ -57,7 +57,12 @@ class FightScreen extends Component{
             consequence:"",
             resultat:""
         })
-        this.state.isPlayerTurn && setTimeout(this.monsterAttack, 1000)
+        if (this.state.playerDef===0 || this.state.monsterDef===0){
+            this.setState({endGame: true})
+        }
+        else if (this.state.isPlayerTurn){
+             setTimeout(this.monsterAttack, 1000)
+        }
     }
 
     monsterAttack=()=>{
@@ -77,7 +82,6 @@ class FightScreen extends Component{
             this.setState({
                 playerDef: 0,
                 resultat: `Tu es KO`,
-                endGame: true,
                 winner:`${this.state.monsterName} t'a vaincu...`
             })
         }
@@ -102,7 +106,6 @@ class FightScreen extends Component{
             this.setState({
                 monsterDef: 0,
                 resultat: `Tu as vaincu ${this.state.monsterName}`,
-                endGame: true,
                 winner:`Tu as vaincu ${this.state.monsterName}!`
             })}
         
