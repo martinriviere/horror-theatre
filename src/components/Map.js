@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { GameContext } from "../providers/GameProvider";
 import Room from "./Room";
 import "./map.css";
+import corridor from "../images/corridor.jpg";
 import { randomOf } from "./helpers";
 
 function CreateArrays() {
@@ -75,7 +76,13 @@ function Map() {
     })
   );
   return (
-    <div style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
+    <div style={{ 
+      transform: `translate(${translate.x}px, ${translate.y}px)`, 
+      backgroundImage: `url(${corridor})`, 
+      height: `2200px`, 
+      width: `2200px` 
+      }}
+    >
       {rooms &&
         rooms.map(room => <Room style={room} key={room.id} id={room.id} />)}
     </div>

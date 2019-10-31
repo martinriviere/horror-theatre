@@ -5,7 +5,7 @@ import { randomOf } from "./helpers";
 function Room(props) {
   const { rooms } = useContext(GameContext);
   return (
-    <div style={props.style} className="test">
+    <div style={props.style} className="room">
       {rooms && rooms[props.id].type}
     </div>
   );
