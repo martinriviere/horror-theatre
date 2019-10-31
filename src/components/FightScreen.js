@@ -155,7 +155,7 @@ class FightScreen extends Component{
                 {endGame && <div className='endGame' style={{backgroundImage:`url(${BG})`}}>
                     <p>{winner}</p>
                     <button>go back to the theater</button>
-                    </div>}
+                </div>}
                 <PlayerCol
                     turn={isPlayerTurn}
                     att={playerAtt}

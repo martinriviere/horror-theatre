@@ -12,7 +12,7 @@
 }
 
 .endGame{
-    animation: fadein 2s;
+    animation: fadein 4s;
     position: fixed;
     top: 0;
     left: 0;
@@ -99,20 +99,24 @@
 .action{
     font-size: 24px;
     text-align: center;
+    animation: fadein 1s;
 }
 
 .valeur{
     font-size: 64px;
+    animation: fadein 4s;
 }
 
 .consequence{
     font-size: 16px;
     text-align: center;
+    animation: fadein 6s;
 }
 
 .resultat{
     font-size: 16px;
     text-align: center;
+    animation: fadein 8s;
 }
 
 .displayOn{
@@ -168,10 +172,10 @@ table{
 }
 
 @keyframes fadein {
-    from {
+    0% {
         opacity:0;
     }
-    to {
+    100% {
         opacity:1;
     }
 }
