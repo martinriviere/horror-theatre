@@ -19,6 +19,11 @@
   background: grey;
   animation: zoomScreen 3s ease-in 1s;
   animation-fill-mode: forwards;
+  display: flex;
+}
+
+#screen img {
+  margin: 16px;
 }
 
 @keyframes zoomBgd {

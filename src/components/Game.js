@@ -4,15 +4,15 @@ import Character from "./Character";
 import Map from "./Map";
 import "../App.css";
 import { GameContext } from "../providers/GameProvider";
-import FightScreen from "./FightScreen"
+import FightScreen from "./FightScreen";
 
 function Game() {
-  const { displayTheatre, displayFight } = useContext(GameContext);
+  const { displayTheatre, displayFight, movie } = useContext(GameContext);
   return (
     <>
       <Map />
       <Character />
-      {displayTheatre && <Theatre />}
+      {displayTheatre && <Theatre movie={movie} />}
       {displayFight && <FightScreen />}
     </>
   );

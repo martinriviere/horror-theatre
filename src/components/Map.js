@@ -4,6 +4,7 @@ import Room from "./Room";
 import "./map.css";
 import corridor from "../images/corridor.jpg";
 import { randomOf } from "./helpers";
+import axios from "axios";
 
 function CreateArrays() {
   const x = 9; // Nb d'éléments en hauteur
@@ -65,15 +66,19 @@ function TestRoom(x) {
 
 function Map() {
   const { translate, getRooms, rooms } = useContext(GameContext);
-  getRooms(
-    CreateArrays().map((room, id) => {
-      const tempRoom = {
-        ...room,
-        type: ["Cinéma", "Combat"][randomOf(2)],
-        id: id
-      };
-      return tempRoom;
-    })
+  axios.get("https://hackathon-wild-hackoween.herokuapp.com/movies").then(res =>
+    getRooms(
+      CreateArrays().map((room, id) => {
+        let tempRoom = {
+          ...room,
+          type: ["Cinéma", "Combat"][randomOf(2)],
+          id: id
+        };
+        if (tempRoom.type === "Cinéma")
+          tempRoom.movie = res.data.movies[randomOf(82)];
+        return tempRoom;
+      })
+    )
   );
   return (
     <div style={{ 

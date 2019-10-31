@@ -23,6 +23,8 @@ class GameProvider extends Component {
       image: CharacterUp,
       rooms: null,
       displayTheatre: false,
+      movie: null,
+      closeTheatre: this.closeTheatre
       displayFight: false
     };
     window.addEventListener("keydown", this.handleKeyDown);
@@ -83,13 +85,17 @@ class GameProvider extends Component {
             getValueFromString(checkRoom.top, 2) + 200 &&
           (this.keyCode === 37 || this.keyCode === 39)))
     )
-      if (checkRoom.type === "Cinéma") this.setState({ displayTheatre: true });
+      if (checkRoom.type === "Cinéma") this.setState({ displayTheatre: true, movie: checkRoom.movie });
       else if (checkRoom.type === "Combat") this.setState({ displayFight: true });
     return checkRoom;
   };
 
+  closeTheatre = () => {
+    this.setState({ displayTheatre: false });
+  };
+
   handleKeyDown = event => {
-    // console.log(this.state.rooms);
+    console.log(this.state.rooms);
     // event.preventDefault();
     this.keyCode = event.keyCode;
     const step = 10;
