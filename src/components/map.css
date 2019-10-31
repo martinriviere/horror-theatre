@@ -1,12 +1,9 @@
-body {
-  background-image: url("../images/corridor.jpg");
-  opacity: 0.9;
-}
-
-div {
-  background-color: #000;
+.room {
   background-image: url("../images/room-dark.jpg");
   background-size: contain;
   position: absolute;
-  background-color: #333;
+  background-color: transparent;
+}
+.room:visited {
+  background-image: url("../images/room-light.jpg");
 }
