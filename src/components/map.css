@@ -1,9 +1,11 @@
+body {
+  background-image: url("../images/corridor.jpg");
+  opacity: 0.9;
+}
 div {
-  margin: 0;
-  padding: 0;
+  background-color: #000;
+  background-image: url("../images/room-dark.jpg");
+  background-size: contain;
   position: absolute;
-  background-color: #ddd;
-  display: inline-block;
-  border: 1px solid #eee;
-
+  background-color: #333;
 }
