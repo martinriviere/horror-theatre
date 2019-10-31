@@ -70,7 +70,7 @@ class FightScreen extends Component{
         this.setState({
             action: `${this.state.monsterName} attaque!`,
             valeur: att,
-            consequence: `tu reçois ${-att} points de dégats`,
+            consequence: `...tu reçois ${-att} points de dégats!`,
         })
         if (this.state.playerDef-att>0) {
             this.setState({
@@ -81,7 +81,7 @@ class FightScreen extends Component{
         else {
             this.setState({
                 playerDef: 0,
-                resultat: `Tu es KO`,
+                resultat: `Tu es KO!`,
                 winner:`${this.state.monsterName} t'a vaincu...`
             })
         }
@@ -93,7 +93,7 @@ class FightScreen extends Component{
         this.setState({
             action: "Tu attaques!",
             valeur: att,
-            consequence: `Tu infliges ${att} points de dégats`,
+            consequence: `...tu infliges ${att} points de dégats!`,
         })
         if (this.state.monsterDef-att>0) {
             this.setState({
@@ -105,7 +105,7 @@ class FightScreen extends Component{
         else {
             this.setState({
                 monsterDef: 0,
-                resultat: `Tu as vaincu ${this.state.monsterName}`,
+                resultat: `Tu as vaincu ${this.state.monsterName}!`,
                 winner:`Tu as vaincu ${this.state.monsterName}!`
             })}
         
@@ -119,8 +119,8 @@ class FightScreen extends Component{
             valeur: pUp,
             playerAtt: this.state.playerAtt+pUp,
             playerAttMin: this.state.playerAttMin+pUp,
-            consequence: `Tu reçois ${pUp} points d'attaque`,
-            resultat: `Ta puissance d'attaque est de ${this.state.playerAtt+pUp}`
+            consequence: `...tu reçois ${pUp} points d'attaque!`,
+            resultat: `Ta puissance d'attaque est de ${this.state.playerAttMin+pUp} / ${this.state.playerAtt+pUp}`
         })
     }
 
@@ -130,7 +130,7 @@ class FightScreen extends Component{
             action: "Tu te soignes!",
             valeur: soin,
             playerDef: this.state.playerDef+soin,
-            consequence: `Tu reçois ${soin} points de soin`,
+            consequence: `...tu reçois ${soin} points de vie!`,
             resultat: `Tu as ${this.state.playerDef+2}pv`
         })
     }
