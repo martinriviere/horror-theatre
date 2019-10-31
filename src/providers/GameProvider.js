@@ -70,11 +70,21 @@ class GameProvider extends Component {
         virtualLeft + step
       );
     });
+    if (
+      checkRoom &&
+      ((virtualLeft >= getValueFromString(checkRoom.left, 2) + 100 &&
+        virtualLeft + this.computedCharacterPosition.width <=
+          getValueFromString(checkRoom.left, 2) + 200) ||
+        (virtualTop >= getValueFromString(checkRoom.top, 2) + 100 &&
+          virtualTop + this.computedCharacterPosition.height <=
+            getValueFromString(checkRoom.top, 2) + 200))
+    )
+      console.log("collision porte");
     return checkRoom;
   };
 
   handleKeyDown = event => {
-    console.log(this.state.rooms);
+    // console.log(this.state.rooms);
     // event.preventDefault();
     const step = 10;
     if ([37, 38, 39, 40].includes(event.keyCode)) {
