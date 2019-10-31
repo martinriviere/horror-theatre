@@ -20,13 +20,17 @@ class GameProvider extends Component {
         left: window.innerWidth / 2
       },
       getRooms: this.getRooms,
-      image: CharacterUp
+      image: CharacterUp,
+      rooms: null
     };
     window.addEventListener("keydown", this.handleKeyDown);
+    this.numberOfRooms = null;
+    this.isRoomsListDefined = false;
   }
 
   getRooms = array => {
-    this.rooms = array;
+    if (!this.isRoomsListDefined) this.setState({ rooms: array });
+    this.isRoomsListDefined = true;
   };
 
   getComputedStyle = (top, left, width, height) => {
@@ -52,28 +56,25 @@ class GameProvider extends Component {
     const { virtualPosition } = this.state;
     const virtualTop = virtualPosition.top;
     const virtualLeft = virtualPosition.left;
-    const checkRoom = this.rooms.find(room => {
+    const checkRoom = this.state.rooms.find(room => {
       const height = getValueFromString(room.height, 2);
       const width = getValueFromString(room.width, 2);
       const left = getValueFromString(room.left, 2);
       const top = getValueFromString(room.top, 2);
-      return (
-        height === 300 &&
-        width === 300 &&
-        this.doesCharacterCollide(
-          left,
-          left + width,
-          top,
-          top + height,
-          virtualTop + step,
-          virtualLeft + step
-        )
+      return this.doesCharacterCollide(
+        left,
+        left + width,
+        top,
+        top + height,
+        virtualTop + step,
+        virtualLeft + step
       );
     });
     return checkRoom;
   };
 
   handleKeyDown = event => {
+    console.log(this.state.rooms);
     // event.preventDefault();
     const step = 10;
     if ([37, 38, 39, 40].includes(event.keyCode)) {

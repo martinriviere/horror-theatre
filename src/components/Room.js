@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GameContext } from "../providers/GameProvider";
+import { randomOf } from "./helpers";
 
 function Room(props) {
-  return <div style={props.style} className="test"></div>;
+  const { rooms } = useContext(GameContext);
+  return (
+    <div style={props.style} className="test">
+      {rooms && rooms[props.id].type}
+    </div>
+  );
 }
 
 export default Room;
