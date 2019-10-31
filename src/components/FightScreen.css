@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC&display=swap');
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    min-width: 568px;
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Bowlby One SC', cursive;
+}
+
+.startGame{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.startGame h2{
+    color: white;
+    font-size: 40px;
+    margin: 24px;
+}
+
+.startGame img{
+    width: 20%;
+    margin:24px;
+}
+
+.startGame button {
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color:#f24537;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+    color:#ffffff;
+    font-family: 'Bowlby One SC', cursive;
+	font-size:24px;
+	font-weight:bold;
+	padding:16px 56px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #810e05;
+    margin: 24px;
+}
+.startGame button:hover {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color:#c62d1f;
+}
+.startGame button:active {
+	position:relative;
+	top:1px;
+}
+
+.endGame{
+    animation: fadein 2s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.endGame button {
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color:#f24537;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+    color:#ffffff;
+    font-family: 'Bowlby One SC', cursive;
+	font-size:16px;
+	font-weight:bold;
+	padding:16px 56px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #810e05;
+    margin: 32px;
+}
+.endGame button:hover {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color:#c62d1f;
+}
+.endGame button:active {
+	position:relative;
+	top:1px;
+}
+
+.endGame p{
+    color: white;
+    font-size: 40px;
+    margin-bottom: 160px;
+}
+
+.player{
+    transition: 2s;
+    width: 30%;
+    height: 90%;
+    color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.playerImg{
+    width: 60%;
+    border-radius: 16px;
+    margin: 16px;
+}
+
+.player p{
+    font-size: 24px;
+    margin:0;
+}
+
+.fightZone{
+    width: 35%;
+    height: 90%;
+    background-color: rgb(46, 46, 46, 0.8);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.actionCard{
+    transition: 2s;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(240, 240, 240);
+}
+
+.action{
+    font-size: 24px;
+    text-align: center;
+    animation: fadein 1s;
+}
+
+.valeur{
+    font-size: 64px;
+    animation: fadein 4s;
+}
+
+.consequence{
+    font-size: 16px;
+    text-align: center;
+    animation: fadein 6s;
+}
+
+.resultat{
+    font-size: 16px;
+    text-align: center;
+    animation: fadein 8s;
+}
+
+.displayOn{
+    box-shadow:inset 0px 1px 0px 0px #8a2a21;
+    background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+    background-color:#c62d1f;
+    border-radius:6px;
+    border:1px solid #d02718;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #810e05;
+}
+
+
+.displayOff{
+    display: none;
+}
+
+.separator{
+    width: 90%;
+    height: 4px;
+    background-color:black;
+}
+
+.monster{
+    transition: 2s;
+    width: 30%;
+    height: 90%;
+    color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.monsterImg{
+    width: 60%;
+    border-radius: 16px;
+    margin: 16px;
+}
+
+table{
+    width: 60%;
+}
+
+.score{
+    text-align: right;
+    font-size: 24px;
+}
+
+@keyframes fadein {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}

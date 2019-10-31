@@ -2,6 +2,7 @@ body {
   background-image: url("../images/corridor.jpg");
   opacity: 0.9;
 }
+
 div {
   background-color: #000;
   background-image: url("../images/room-dark.jpg");
