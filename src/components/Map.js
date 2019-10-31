@@ -74,7 +74,13 @@ function Map() {
   return (
     <div style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
       {CreateArrays().map((item, i) => (
-        <Room style={item} key={i} />
+        <Room
+          style={item}
+          key={i}
+          isRoom={
+            item.height === "300px" && item.width === "300px" ? true : false
+          }
+        />
       ))}
     </div>
   );

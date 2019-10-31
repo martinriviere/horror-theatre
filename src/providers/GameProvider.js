@@ -20,13 +20,21 @@ class GameProvider extends Component {
         left: window.innerWidth / 2
       },
       getRooms: this.getRooms,
-      image: CharacterUp
+      image: CharacterUp,
+      addRoomToList: this.addRoomToList,
+      roomsList: []
     };
     window.addEventListener("keydown", this.handleKeyDown);
+    this.roomsList = [];
   }
 
   getRooms = array => {
     this.rooms = array;
+  };
+
+  addRoomToList = room => {
+    if (this.state.roomsList.length < this.rooms.length)
+      this.setState({ roomsList: [...this.state.roomsList, room] });
   };
 
   getComputedStyle = (top, left, width, height) => {
@@ -74,6 +82,7 @@ class GameProvider extends Component {
   };
 
   handleKeyDown = event => {
+    console.log(this.roomsList);
     // event.preventDefault();
     const step = 10;
     if ([37, 38, 39, 40].includes(event.keyCode)) {
