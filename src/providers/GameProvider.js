@@ -4,8 +4,6 @@ import CharacterUp from "../images/characterUp.png";
 import CharacterRight from "../images/characterRight.png";
 import CharacterDown from "../images/characterDown.png";
 import CharacterLeft from "../images/characterLeft.png";
-import axios from "axios";
-import { randomOf } from "../components/helpers";
 
 export const GameContext = React.createContext();
 
@@ -27,6 +25,7 @@ class GameProvider extends Component {
       displayTheatre: false,
       movie: null,
       closeTheatre: this.closeTheatre
+      displayFight: false
     };
     window.addEventListener("keydown", this.handleKeyDown);
     this.numberOfRooms = null;
@@ -86,8 +85,8 @@ class GameProvider extends Component {
             getValueFromString(checkRoom.top, 2) + 200 &&
           (this.keyCode === 37 || this.keyCode === 39)))
     )
-      if (checkRoom.type === "Cinéma")
-        this.setState({ displayTheatre: true, movie: checkRoom.movie });
+      if (checkRoom.type === "Cinéma") this.setState({ displayTheatre: true, movie: checkRoom.movie });
+      else if (checkRoom.type === "Combat") this.setState({ displayFight: true });
     return checkRoom;
   };
 
