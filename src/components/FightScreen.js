@@ -5,11 +5,13 @@ import MonsterCol from './MonsterCol'
 import axios from 'axios'
 import ActionCard from './ActionCard'
 import BG from '../images/fightBG.jpg'
+import fightBO from '../sounds/Heros.mp3'
 
 class FightScreen extends Component{
     constructor(props){
         super(props)
         this.state={
+            isPlaySound:false,
             isPlayerTurn: true,
             endGame:false,
             startGame:true,
@@ -137,6 +139,13 @@ class FightScreen extends Component{
     
     componentDidMount=()=>{
         this.getMonster()
+       this.setState({ isPlaySound:true},()=>this.playSound())
+    }
+
+    playSound=()=>{
+        let audio = new Audio(fightBO)
+        audio.setAttribute('muted',true);
+        audio.play()
     }
 
     render(){
