@@ -69,7 +69,8 @@ function TestRoom(x) {
 }
 
 function Map() {
-  const { translate } = useContext(GameContext);
+  const { translate, getRooms } = useContext(GameContext);
+  getRooms(CreateArrays());
   return (
     <div style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
       {CreateArrays().map((item, i) => (

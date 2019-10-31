@@ -1,17 +1,18 @@
 import React, { useContext, createRef, useEffect } from "react";
-import CharacterImg from "../images/character.png";
 import { GameContext } from "../providers/GameProvider";
 import { getValueFromString } from "./helpers";
 
 function Character() {
-  const { characterPosition, getComputedStyle } = useContext(GameContext);
+  const { characterPosition, getComputedStyle, image } = useContext(
+    GameContext
+  );
   const img = createRef();
 
   const style = {
-    position: "absolute",
-    width: 60,
-    marginLeft: -30,
-    marginTop: -21.1
+    position: "absolute"
+    // width: "50%"
+    // marginLeft: -30,
+    // marginTop: -21.1
   };
 
   useEffect(() => {
@@ -20,17 +21,24 @@ function Character() {
       window.getComputedStyle(img.current).left,
       2
     );
-    getComputedStyle(top, left);
+    const width = getValueFromString(
+      window.getComputedStyle(img.current).width,
+      2
+    );
+    const height = getValueFromString(
+      window.getComputedStyle(img.current).height,
+      2
+    );
+    getComputedStyle(top, left, width, height);
   });
 
   return (
     <img
-      src={CharacterImg}
+      src={image}
       style={{
         ...style,
         left: `calc(50vw + ${characterPosition.left}px)`,
-        top: `calc(50vh + ${characterPosition.top}px)`,
-        transform: `rotate(${characterPosition.rotate}deg)`
+        top: `calc(50vh + ${characterPosition.top}px)`
       }}
       alt="Personnage"
       ref={img}
