@@ -21,7 +21,9 @@ class GameProvider extends Component {
       },
       getRooms: this.getRooms,
       image: CharacterUp,
-      rooms: null
+      rooms: null,
+      displayTheatre: false,
+      displayFight: false
     };
     window.addEventListener("keydown", this.handleKeyDown);
     this.numberOfRooms = null;
@@ -81,7 +83,8 @@ class GameProvider extends Component {
             getValueFromString(checkRoom.top, 2) + 200 &&
           (this.keyCode === 37 || this.keyCode === 39)))
     )
-      console.log("collision porte");
+      if (checkRoom.type === "Cinéma") this.setState({ displayTheatre: true });
+      else if (checkRoom.type === "Combat") this.setState({ displayFight: true });
     return checkRoom;
   };
 
