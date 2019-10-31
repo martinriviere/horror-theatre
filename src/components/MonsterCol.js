@@ -5,14 +5,16 @@ const MonsterCol = (props) =>{
     return (
         <div className="monster">
             <table>
-                <tr>
-                    <td>Puissance:</td>
-                    <td className="score">{props.att}</td>
-                </tr>
-                <tr>
-                    <td>PV:</td>
-                    <td className="score">{props.def}</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>Puissance:</td>
+                        <td className="score">1 / {props.att}</td>
+                    </tr>
+                    <tr>
+                        <td>PV:</td>
+                        <td className="score">{props.def}</td>
+                    </tr>
+                </tbody>
             </table>
             <img className="monsterImg" src={props.img} alt="#"/>
         </div>
