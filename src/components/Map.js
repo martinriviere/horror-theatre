@@ -80,7 +80,7 @@ function Map() {
     )
   );
   return (
-    <div style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
+    <div id="map" style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
       {rooms &&
         rooms.map(room => <Room style={room} key={room.id} id={room.id} />)}
     </div>

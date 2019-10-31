@@ -27,7 +27,8 @@ class GameProvider extends Component {
       displayTheatre: false,
       movie: null,
       closeTheatre: this.closeTheatre,
-      displayFight: false
+      displayFight: false,
+      closeFight: this.closeFight
     };
     window.addEventListener("keydown", this.handleKeyDown);
     this.numberOfRooms = null;
@@ -98,160 +99,168 @@ class GameProvider extends Component {
     this.setState({ displayTheatre: false });
   };
 
+  closeFight = () => {
+    this.setState({ displayFight: false });
+  };
+
   handleKeyDown = event => {
-    console.log(this.state.rooms);
-    // event.preventDefault();
-    this.keyCode = event.keyCode;
-    const step = 10;
-    if ([37, 38, 39, 40].includes(this.keyCode)) {
-      const { characterPosition, translate, virtualPosition } = this.state;
-      switch (this.keyCode) {
-        case 37:
-          if (!this.checkCollision(-step)) {
-            if (
-              this.computedCharacterPosition.left > window.innerWidth * 0.15 ||
-              virtualPosition.left < window.innerWidth * 0.15
-            ) {
-              // console.log(this.checkCollision(-step));
-              if (virtualPosition.left > 0) {
+    if (!this.state.displayTheatre && !this.state.displayFight) {
+      console.log(this.state.rooms);
+      // event.preventDefault();
+      this.keyCode = event.keyCode;
+      const step = 10;
+      if ([37, 38, 39, 40].includes(this.keyCode)) {
+        const { characterPosition, translate, virtualPosition } = this.state;
+        switch (this.keyCode) {
+          case 37:
+            if (!this.checkCollision(-step)) {
+              if (
+                this.computedCharacterPosition.left >
+                  window.innerWidth * 0.15 ||
+                virtualPosition.left < window.innerWidth * 0.15
+              ) {
+                // console.log(this.checkCollision(-step));
+                if (virtualPosition.left > 0) {
+                  this.setState({
+                    characterPosition: {
+                      ...characterPosition,
+                      left: characterPosition.left - step
+                    },
+                    virtualPosition: {
+                      ...virtualPosition,
+                      left: virtualPosition.left - step
+                    }
+                  });
+                  if (!this.checkCollision(step))
+                    this.setState({ image: CharacterLeft });
+                }
+              } else {
                 this.setState({
-                  characterPosition: {
-                    ...characterPosition,
-                    left: characterPosition.left - step
-                  },
+                  characterPosition: { ...characterPosition },
+                  translate: { ...translate, x: translate.x + step },
                   virtualPosition: {
                     ...virtualPosition,
                     left: virtualPosition.left - step
-                  }
-                });
-                if (!this.checkCollision(step))
-                  this.setState({ image: CharacterLeft });
-              }
-            } else {
-              this.setState({
-                characterPosition: { ...characterPosition },
-                translate: { ...translate, x: translate.x + step },
-                virtualPosition: {
-                  ...virtualPosition,
-                  left: virtualPosition.left - step
-                },
-                image: CharacterLeft
-              });
-            }
-          }
-          break;
-        case 38:
-          if (!this.checkCollision(-step)) {
-            if (
-              this.computedCharacterPosition.top > window.innerHeight * 0.2 ||
-              virtualPosition.top < window.innerHeight * 0.2
-            ) {
-              if (virtualPosition.top > 0) {
-                this.setState({
-                  characterPosition: {
-                    ...characterPosition,
-                    top: characterPosition.top - step
                   },
+                  image: CharacterLeft
+                });
+              }
+            }
+            break;
+          case 38:
+            if (!this.checkCollision(-step)) {
+              if (
+                this.computedCharacterPosition.top > window.innerHeight * 0.2 ||
+                virtualPosition.top < window.innerHeight * 0.2
+              ) {
+                if (virtualPosition.top > 0) {
+                  this.setState({
+                    characterPosition: {
+                      ...characterPosition,
+                      top: characterPosition.top - step
+                    },
+                    virtualPosition: {
+                      ...virtualPosition,
+                      top: virtualPosition.top - step
+                    }
+                  });
+                  if (!this.checkCollision(step))
+                    this.setState({ image: CharacterUp });
+                }
+              } else {
+                this.setState({
+                  characterPosition: { ...characterPosition },
+                  translate: { ...translate, y: translate.y + step },
                   virtualPosition: {
                     ...virtualPosition,
                     top: virtualPosition.top - step
-                  }
-                });
-                if (!this.checkCollision(step))
-                  this.setState({ image: CharacterUp });
-              }
-            } else {
-              this.setState({
-                characterPosition: { ...characterPosition },
-                translate: { ...translate, y: translate.y + step },
-                virtualPosition: {
-                  ...virtualPosition,
-                  top: virtualPosition.top - step
-                },
-                image: CharacterUp
-              });
-            }
-          }
-          break;
-        case 39:
-          if (!this.checkCollision(step)) {
-            if (
-              this.computedCharacterPosition.left < window.innerWidth * 0.85 ||
-              virtualPosition.left >
-                2100 -
-                  window.innerWidth * 0.15 -
-                  this.computedCharacterPosition.width
-            ) {
-              if (
-                virtualPosition.left <
-                2100 - this.computedCharacterPosition.width
-              ) {
-                this.setState({
-                  characterPosition: {
-                    ...characterPosition,
-                    left: characterPosition.left + step
                   },
+                  image: CharacterUp
+                });
+              }
+            }
+            break;
+          case 39:
+            if (!this.checkCollision(step)) {
+              if (
+                this.computedCharacterPosition.left <
+                  window.innerWidth * 0.85 ||
+                virtualPosition.left >
+                  2100 -
+                    window.innerWidth * 0.15 -
+                    this.computedCharacterPosition.width
+              ) {
+                if (
+                  virtualPosition.left <
+                  2100 - this.computedCharacterPosition.width
+                ) {
+                  this.setState({
+                    characterPosition: {
+                      ...characterPosition,
+                      left: characterPosition.left + step
+                    },
+                    virtualPosition: {
+                      ...virtualPosition,
+                      left: virtualPosition.left + step
+                    }
+                  });
+                  if (!this.checkCollision(-step))
+                    this.setState({ image: CharacterRight });
+                }
+              } else {
+                this.setState({
+                  characterPosition: { ...characterPosition },
+                  translate: { ...translate, x: translate.x - step },
                   virtualPosition: {
                     ...virtualPosition,
                     left: virtualPosition.left + step
-                  }
-                });
-                if (!this.checkCollision(-step))
-                  this.setState({ image: CharacterRight });
-              }
-            } else {
-              this.setState({
-                characterPosition: { ...characterPosition },
-                translate: { ...translate, x: translate.x - step },
-                virtualPosition: {
-                  ...virtualPosition,
-                  left: virtualPosition.left + step
-                },
-                image: CharacterRight
-              });
-            }
-          }
-          break;
-        case 40:
-          if (!this.checkCollision(step)) {
-            if (
-              this.computedCharacterPosition.top < window.innerHeight * 0.8 ||
-              virtualPosition.top >
-                2100 -
-                  window.innerHeight * 0.2 -
-                  this.computedCharacterPosition.height
-            ) {
-              if (
-                virtualPosition.top <
-                2100 - this.computedCharacterPosition.height
-              ) {
-                this.setState({
-                  characterPosition: {
-                    ...characterPosition,
-                    top: characterPosition.top + step
                   },
+                  image: CharacterRight
+                });
+              }
+            }
+            break;
+          case 40:
+            if (!this.checkCollision(step)) {
+              if (
+                this.computedCharacterPosition.top < window.innerHeight * 0.8 ||
+                virtualPosition.top >
+                  2100 -
+                    window.innerHeight * 0.2 -
+                    this.computedCharacterPosition.height
+              ) {
+                if (
+                  virtualPosition.top <
+                  2100 - this.computedCharacterPosition.height
+                ) {
+                  this.setState({
+                    characterPosition: {
+                      ...characterPosition,
+                      top: characterPosition.top + step
+                    },
+                    virtualPosition: {
+                      ...virtualPosition,
+                      top: virtualPosition.top + step
+                    }
+                  });
+                  if (!this.checkCollision(-step))
+                    this.setState({ image: CharacterDown });
+                }
+              } else {
+                this.setState({
+                  characterPosition: { ...characterPosition },
+                  translate: { ...translate, y: translate.y - step },
                   virtualPosition: {
                     ...virtualPosition,
                     top: virtualPosition.top + step
-                  }
+                  },
+                  image: CharacterDown
                 });
-                if (!this.checkCollision(-step))
-                  this.setState({ image: CharacterDown });
               }
-            } else {
-              this.setState({
-                characterPosition: { ...characterPosition },
-                translate: { ...translate, y: translate.y - step },
-                virtualPosition: {
-                  ...virtualPosition,
-                  top: virtualPosition.top + step
-                },
-                image: CharacterDown
-              });
             }
-          }
-          break;
-        default:
+            break;
+          default:
+        }
       }
     }
   };
