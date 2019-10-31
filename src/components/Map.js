@@ -63,24 +63,16 @@ function TestRoom(x) {
 }
 
 function Map() {
-  const { translate, getRooms } = useContext(GameContext);
+  const { translate, getRooms, rooms } = useContext(GameContext);
   getRooms(
-    CreateArrays().map(room => {
-      return { ...room, type: ["Cinéma", "Combat"][randomOf(2)] };
+    CreateArrays().map((room, id) => {
+      return { ...room, type: ["Cinéma", "Combat"][randomOf(2)], id: id };
     })
   );
   return (
     <div style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
-      {CreateArrays().map((item, i) => (
-        <Room
-          style={item}
-          key={i}
-          isRoom={
-            item.height === "300px" && item.width === "300px" ? true : false
-          }
-          id={i}
-        />
-      ))}
+      {rooms &&
+        rooms.map(room => <Room style={room} key={room.id} id={room.id} />)}
     </div>
   );
 }
