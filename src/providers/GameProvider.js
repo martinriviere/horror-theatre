@@ -95,9 +95,10 @@ class GameProvider extends Component {
                   virtualPosition: {
                     ...virtualPosition,
                     left: virtualPosition.left - step
-                  },
-                  image: CharacterLeft
+                  }
                 });
+                if (!this.checkCollision(step))
+                  this.setState({ image: CharacterLeft });
               }
             } else {
               this.setState({
@@ -127,9 +128,10 @@ class GameProvider extends Component {
                   virtualPosition: {
                     ...virtualPosition,
                     top: virtualPosition.top - step
-                  },
-                  image: CharacterUp
+                  }
                 });
+                if (!this.checkCollision(step))
+                  this.setState({ image: CharacterUp });
               }
             } else {
               this.setState({
@@ -165,9 +167,10 @@ class GameProvider extends Component {
                   virtualPosition: {
                     ...virtualPosition,
                     left: virtualPosition.left + step
-                  },
-                  image: CharacterRight
+                  }
                 });
+                if (!this.checkCollision(-step))
+                  this.setState({ image: CharacterRight });
               }
             } else {
               this.setState({
@@ -203,9 +206,10 @@ class GameProvider extends Component {
                   virtualPosition: {
                     ...virtualPosition,
                     top: virtualPosition.top + step
-                  },
-                  image: CharacterDown
+                  }
                 });
+                if (!this.checkCollision(-step))
+                  this.setState({ image: CharacterDown });
               }
             } else {
               this.setState({
