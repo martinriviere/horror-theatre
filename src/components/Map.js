@@ -66,7 +66,12 @@ function Map() {
   const { translate, getRooms, rooms } = useContext(GameContext);
   getRooms(
     CreateArrays().map((room, id) => {
-      return { ...room, type: ["Cinéma", "Combat"][randomOf(2)], id: id };
+      const tempRoom = {
+        ...room,
+        type: ["Cinéma", "Combat"][randomOf(2)],
+        id: id
+      };
+      return tempRoom;
     })
   );
   return (
