@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { GameContext } from "../providers/GameProvider";
 import Room from "./Room";
 import "./map.css";
+import { randomOf } from "./helpers";
 
 function CreateArrays() {
   const x = 9; // Nb d'éléments en hauteur
@@ -22,11 +23,7 @@ function CreateArrays() {
       roomStyleX = { top: `${posX}px`, height: `${roomSize}px` };
       posX += roomSize;
     } else {
-      roomStyleX = {
-        top: `${posX}px`,
-        height: `${corridorSize}px`,
-        backgroundColor: `#eee`
-      };
+      roomStyleX = "";
       posX += corridorSize;
     }
     for (let c = 0; c < y; c++) {
@@ -35,14 +32,11 @@ function CreateArrays() {
         roomStyleY = { left: `${posY % modulo}px`, width: `${roomSize}px` };
         posY += roomSize;
       } else {
-        roomStyleY = {
-          left: `${posY % modulo}px`,
-          width: `${corridorSize}px`,
-          backgroundColor: `#eee`
-        };
+        roomStyleY = "";
         posY += corridorSize;
       }
-      arrays.push({ ...roomStyleX, ...roomStyleY });
+      if (roomStyleX !== "" && roomStyleY !== "")
+        arrays.push({ ...roomStyleX, ...roomStyleY });
     }
   }
   posX = 0;
@@ -70,7 +64,11 @@ function TestRoom(x) {
 
 function Map() {
   const { translate, getRooms } = useContext(GameContext);
-  getRooms(CreateArrays());
+  getRooms(
+    CreateArrays().map(room => {
+      return { ...room, type: ["Cinéma", "Combat"][randomOf(2)] };
+    })
+  );
   return (
     <div style={{ transform: `translate(${translate.x}px, ${translate.y}px)` }}>
       {CreateArrays().map((item, i) => (
@@ -80,6 +78,7 @@ function Map() {
           isRoom={
             item.height === "300px" && item.width === "300px" ? true : false
           }
+          id={i}
         />
       ))}
     </div>
