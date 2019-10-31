@@ -52,7 +52,7 @@ class GameProvider extends Component {
     else return false;
   };
 
-  checkCollision = step => {
+  checkCollision = (step, keyCode) => {
     const { virtualPosition } = this.state;
     const virtualTop = virtualPosition.top;
     const virtualLeft = virtualPosition.left;
@@ -74,10 +74,12 @@ class GameProvider extends Component {
       checkRoom &&
       ((virtualLeft >= getValueFromString(checkRoom.left, 2) + 100 &&
         virtualLeft + this.computedCharacterPosition.width <=
-          getValueFromString(checkRoom.left, 2) + 200) ||
+          getValueFromString(checkRoom.left, 2) + 200 &&
+        (this.keyCode === 38 || this.keyCode === 40)) ||
         (virtualTop >= getValueFromString(checkRoom.top, 2) + 100 &&
           virtualTop + this.computedCharacterPosition.height <=
-            getValueFromString(checkRoom.top, 2) + 200))
+            getValueFromString(checkRoom.top, 2) + 200 &&
+          (this.keyCode === 37 || this.keyCode === 39)))
     )
       console.log("collision porte");
     return checkRoom;
@@ -86,10 +88,11 @@ class GameProvider extends Component {
   handleKeyDown = event => {
     // console.log(this.state.rooms);
     // event.preventDefault();
+    this.keyCode = event.keyCode;
     const step = 10;
-    if ([37, 38, 39, 40].includes(event.keyCode)) {
+    if ([37, 38, 39, 40].includes(this.keyCode)) {
       const { characterPosition, translate, virtualPosition } = this.state;
-      switch (event.keyCode) {
+      switch (this.keyCode) {
         case 37:
           if (!this.checkCollision(-step)) {
             if (
