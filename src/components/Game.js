@@ -6,12 +6,12 @@ import "../App.css";
 import { GameContext } from "../providers/GameProvider";
 
 function Game() {
-  const { displayTheatre } = useContext(GameContext);
+  const { displayTheatre, movie } = useContext(GameContext);
   return (
     <>
       <Map />
       <Character />
-      {displayTheatre && <Theatre />}
+      {displayTheatre && <Theatre movie={movie} />}
     </>
   );
 }
