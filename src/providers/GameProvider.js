@@ -16,7 +16,7 @@ class GameProvider extends Component {
       translate: { x: 0, y: 0 },
       getComputedStyle: this.getComputedStyle,
       virtualPosition: {
-        top: window.innerHeight / 2,
+        top: 350,
         left: window.innerWidth / 2
       },
       getRooms: this.getRooms,

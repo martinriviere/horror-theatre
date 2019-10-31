@@ -38,7 +38,7 @@ function Character() {
       style={{
         ...style,
         left: `calc(50vw + ${characterPosition.left}px)`,
-        top: `calc(50vh + ${characterPosition.top}px)`
+        top: `calc(350px + ${characterPosition.top}px)`
       }}
       alt="Personnage"
       ref={img}
