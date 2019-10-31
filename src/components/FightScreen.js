@@ -12,6 +12,7 @@ class FightScreen extends Component{
         this.state={
             isPlayerTurn: true,
             endGame:false,
+            startGame:true,
             winner:'',
             playerAtt:8,
             playerAttMin:0,
@@ -44,10 +45,13 @@ class FightScreen extends Component{
         });
     }
 
+    startFight=()=>{
+        this.setState({startGame: false})
+    }
+
     changeTurn=()=>{
         this.setState({
             isPlayerTurn: !this.state.isPlayerTurn,
-            endGame: false,
             action:"",
             valeur:"",
             consequence:"",
@@ -63,7 +67,7 @@ class FightScreen extends Component{
             valeur: att,
             consequence: `tu reçois ${-att} points de dégats`,
         })
-        if (this.state.playerDef-att>=0) {
+        if (this.state.playerDef-att>0) {
             this.setState({
             playerDef: this.state.playerDef-att,
             resultat: `Il te reste ${this.state.playerDef-att}pv`
@@ -87,7 +91,7 @@ class FightScreen extends Component{
             valeur: att,
             consequence: `Tu infliges ${att} points de dégats`,
         })
-        if (this.state.monsterDef-att>=0) {
+        if (this.state.monsterDef-att>0) {
             this.setState({
             monsterDef: this.state.monsterDef-att,
             resultat: `${this.state.monsterName} tombe a ${this.state.monsterDef-att}pv`
@@ -118,7 +122,7 @@ class FightScreen extends Component{
     }
 
     playerSoin=()=>{
-        let soin = Math.ceil(Math.random()*3)
+        let soin = Math.ceil(Math.random()*6)
         this.setState({
             action: "Tu te soignes!",
             valeur: soin,
@@ -136,6 +140,7 @@ class FightScreen extends Component{
         const{
             isPlayerTurn,
             endGame,
+            startGame,
             winner,
             action,
             valeur,
@@ -151,35 +156,46 @@ class FightScreen extends Component{
         }=this.state
 
         return(
-            <div className='container' style={{backgroundImage:`url(${BG})`}}>
-                {endGame && <div className='endGame' style={{backgroundImage:`url(${BG})`}}>
-                    <p>{winner}</p>
-                    <button>go back to the theater</button>
+            <div>
+                {startGame &&
+                <div className='startGame' style={{backgroundImage:`url(${BG})`}}>
+                    <h2>{monsterName} t'attaque! </h2>
+                    <img className="monsterImg" src={monsterImg} alt="#"/>
+                    <button onClick={this.startFight}>Fight!</button>
                 </div>}
-                <PlayerCol
-                    turn={isPlayerTurn}
-                    att={playerAtt}
-                    attMin={playerAttMin}
-                    def={playerDef}
-                    getAtt={this.playerAttack}
-                    getPow={this.playerPowerUp}
-                    getSoin={this.playerSoin}
-                />
-                <div className="fightZone">
-                    <ActionCard
-                        action={action}
-                        valeur={valeur}
-                        consequence={consequence}
-                        resultat={resultat}
-                        valid={this.changeTurn}
+                <div className='container' style={{backgroundImage:`url(${BG})`}}>
+                    {endGame && <div className='endGame' style={{backgroundImage:`url(${BG})`}}>
+                        <p>{winner}</p>
+                        <button>go back to the theater</button>
+                    </div>}
+                    <PlayerCol
+                        start={startGame}
+                        turn={isPlayerTurn}
+                        att={playerAtt}
+                        attMin={playerAttMin}
+                        def={playerDef}
+                        getAtt={this.playerAttack}
+                        getPow={this.playerPowerUp}
+                        getSoin={this.playerSoin}
+                    />
+                    <div className="fightZone">
+                        <ActionCard
+                            start={startGame}
+                            action={action}
+                            valeur={valeur}
+                            consequence={consequence}
+                            resultat={resultat}
+                            valid={this.changeTurn}
+                        />
+                    </div>
+                    <MonsterCol
+                        start={startGame}
+                        name={monsterName}
+                        img={monsterImg}
+                        att={monsterAtt}
+                        def={monsterDef}
                     />
                 </div>
-                <MonsterCol
-                    name={monsterName}
-                    img={monsterImg}
-                    att={monsterAtt}
-                    def={monsterDef}
-                />
             </div>
         )
     }

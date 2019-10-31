@@ -3,7 +3,7 @@ import './FightScreen.css'
 
 const MonsterCol = (props) =>{
     return (
-        <div className="monster">
+        <div className="monster" style={props.start ? {marginTop:'2000px'} : {marginTop:'0px'}}>
             <table>
                 <tbody>
                     <tr>

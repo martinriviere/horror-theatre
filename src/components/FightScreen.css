@@ -11,6 +11,56 @@
     font-family: 'Bowlby One SC', cursive;
 }
 
+.startGame{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.startGame h2{
+    color: white;
+    font-size: 40px;
+    margin: 24px;
+}
+
+.startGame img{
+    width: 20%;
+    margin:24px;
+}
+
+.startGame button {
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color:#f24537;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+    color:#ffffff;
+    font-family: 'Bowlby One SC', cursive;
+	font-size:24px;
+	font-weight:bold;
+	padding:16px 56px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #810e05;
+    margin: 24px;
+}
+.startGame button:hover {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color:#c62d1f;
+}
+.startGame button:active {
+	position:relative;
+	top:1px;
+}
+
 .endGame{
     animation: fadein 4s;
     position: fixed;
@@ -35,11 +85,12 @@
 	cursor:pointer;
     color:#ffffff;
     font-family: 'Bowlby One SC', cursive;
-	font-size:24px;
+	font-size:16px;
 	font-weight:bold;
-	padding:32px 76px;
+	padding:16px 56px;
 	text-decoration:none;
     text-shadow:0px 1px 0px #810e05;
+    margin: 32px;
 }
 .endGame button:hover {
 	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
@@ -52,10 +103,12 @@
 
 .endGame p{
     color: white;
-    font-size: 72px;
+    font-size: 40px;
+    margin-bottom: 160px;
 }
 
 .player{
+    transition: 2s;
     width: 30%;
     height: 90%;
     color: rgb(240, 240, 240);
@@ -87,6 +140,7 @@
 }
 
 .actionCard{
+    transition: 2s;
     width: 90%;
     height: 90%;
     display: flex;
@@ -147,6 +201,7 @@
 }
 
 .monster{
+    transition: 2s;
     width: 30%;
     height: 90%;
     color: rgb(240, 240, 240);

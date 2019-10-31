@@ -3,7 +3,7 @@ import './FightScreen.css'
 
 const ActionCard = (props) =>{
     return (
-        <div className="actionCard">
+        <div className="actionCard" >
             <p className={props.action!=="" ? "action" : ""}>{props.action}</p>
             <p className={props.action!=="" ?"valeur" : ""}>{props.valeur}</p>
             <p className={props.action!=="" ?"consequence" : ""}>{props.consequence}</p>

@@ -6,7 +6,7 @@ import playerImage from '../images/playerAvatar.jpg'
 const PlayerCol = (props) =>{
 
     return (
-        <div className="player">
+        <div className="player" style={props.start ? {marginBottom:'2000px'} : {marginBottom:'0px'}}>
                     <img className="playerImg" src={playerImage} alt="player_Image"/>
                     <table>
                         <tbody>
